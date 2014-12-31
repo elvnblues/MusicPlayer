@@ -796,17 +796,18 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f08000a;
+        public static final int abc_search_url_text_holo=0x7f08000b;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
-        public static final int black=0x7f080006;
-        public static final int gray=0x7f080005;
-        public static final int list_divider_line=0x7f080009;
+        public static final int black=0x7f080007;
+        public static final int gray=0x7f080006;
+        public static final int hu_blue=0x7f080005;
+        public static final int list_divider_line=0x7f08000a;
         public static final int lv_title_line=0x7f080003;
         public static final int title_blue=0x7f080004;
-        public static final int tool_bgcolor=0x7f080008;
-        public static final int white=0x7f080007;
+        public static final int tool_bgcolor=0x7f080009;
+        public static final int white=0x7f080008;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1018,18 +1019,19 @@ containing a value of this type.
         public static final int img_start_btn=0x7f020070;
         public static final int img_stop_btn=0x7f020071;
         public static final int lv_musicinfolist_item_bg=0x7f020072;
-        public static final int navigation_local_layout_bg=0x7f020073;
-        public static final int playback_playingbar_seekbar_thumb=0x7f020074;
-        public static final int playback_playingbar_seekbar_thumb_default=0x7f020075;
-        public static final int playback_playingbar_seekbar_thumb_pressed=0x7f020076;
-        public static final int playback_playmode_all_button=0x7f020077;
-        public static final int playback_playmode_random_button=0x7f020078;
-        public static final int playback_playmode_single_button=0x7f020079;
-        public static final int pop_win_bg=0x7f02007a;
-        public static final int progress_holo_light=0x7f02007b;
-        public static final int volumn_bg=0x7f02007c;
-        public static final int volumn_front=0x7f02007d;
-        public static final int volumn_primary=0x7f02007e;
+        public static final int menu_playmode_rb_bg=0x7f020073;
+        public static final int navigation_local_layout_bg=0x7f020074;
+        public static final int playback_playingbar_seekbar_thumb=0x7f020075;
+        public static final int playback_playingbar_seekbar_thumb_default=0x7f020076;
+        public static final int playback_playingbar_seekbar_thumb_pressed=0x7f020077;
+        public static final int playback_playmode_all_button=0x7f020078;
+        public static final int playback_playmode_random_button=0x7f020079;
+        public static final int playback_playmode_single_button=0x7f02007a;
+        public static final int pop_win_bg=0x7f02007b;
+        public static final int progress_holo_light=0x7f02007c;
+        public static final int volumn_bg=0x7f02007d;
+        public static final int volumn_front=0x7f02007e;
+        public static final int volumn_primary=0x7f02007f;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1043,7 +1045,6 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f06005d;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1185,9 +1186,6 @@ containing a value of this type.
         public static final int notify_view=0x7f03001d;
         public static final int support_simple_spinner_dropdown_item=0x7f03001e;
         public static final int title=0x7f03001f;
-    }
-    public static final class menu {
-        public static final int main=0x7f0d0000;
     }
     public static final class raw {
         public static final int musicplayer_db=0x7f050000;
