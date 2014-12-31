@@ -28,6 +28,6 @@
 ### 已解决的BUG
 * 在运行MusicPlayer的时候自动播放音乐
       
->>>怀疑初始化调用了OnCompletionListener触发器
+>怀疑初始化调用了OnCompletionListener触发器
 
 
