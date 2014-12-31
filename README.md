@@ -18,7 +18,8 @@
 
 已经发现需要修补的BUG
 ---------------
-###未解决的BUG
+### 未解决的BUG
+### 已解决的BUG
 * 在运行MusicPlayer的时候自动播放音乐
 >>>怀疑初始化调用了OnCompletionListener触发器
 
