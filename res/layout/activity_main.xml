@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <include
+        android:id="@+id/include_top_title"
+        android:layout_alignParentTop="true"
+        layout="@layout/title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_activity_main"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/navigation_local_layout_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip" >
+
+        <ImageButton
+            android:id="@+id/ib_music_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:background="@drawable/ic_player_play" />
+
+        <RelativeLayout
+            android:id="@+id/rl_tool_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_toLeftOf="@id/ib_music_play">
+
+            <TextView
+                android:id="@+id/tv_musicName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="80dip"
+                
+                android:ellipsize="end"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <SeekBar
+                android:id="@+id/sbar_music"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_musicName"
+                android:progressDrawable="@drawable/progress_holo_light"  
+	    		android:thumb="@drawable/playback_playingbar_seekbar_thumb"/>
+
+            <TextView
+                android:id="@+id/tv_music_position_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dip"
+                android:text="00:00" />
+        </RelativeLayout>
+
+        <!--
+     <ProgressBar
+         android:layout_below="@id/tv_musicName"
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp" />
+     
+     <TextView
+         android:layout_below="@id/pb"
+        android:id="@+id/progressTV"
+        android:text="0%"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp" />
+        -->
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_main_musiclist"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_top_title"
+        android:divider="@color/list_divider_line"
+        android:dividerHeight="0.5dip"/>
+    <!--
+         <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvlist"
+        android:layout_below="@id/include_top_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" />
+    -->
+
+</RelativeLayout>
