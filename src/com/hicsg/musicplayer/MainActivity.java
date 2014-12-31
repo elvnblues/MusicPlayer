@@ -157,7 +157,7 @@ public class MainActivity extends Activity {
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
 		menu_playmode_pop.setBackgroundDrawable(new BitmapDrawable());// 有了这句才可以点击返回（撤销）按钮dismiss()popwindow
 		menu_playmode_pop.setOutsideTouchable(true);
-//		menu_playmode_pop.setAnimationStyle(R.style.PopupAnimation);
+		// menu_playmode_pop.setAnimationStyle(R.style.PopupAnimation);
 	}
 
 	private void setListener() {
@@ -179,7 +179,7 @@ public class MainActivity extends Activity {
 
 	private void setData() {
 		musicInfoDao = new MusicInfoDao(MainActivity.this);
-		musicInfoList = musicInfoDao.getAllMusicInfo();
+		musicInfoList = musicInfoDao.getAllMusicInfo();//查詢数据库的数据
 		// Toast.makeText(MainActivity.this, "数量="+musicInfoList.size(),
 		// Toast.LENGTH_SHORT).show();
 		if (musicInfoList.size() > 0) {
@@ -202,18 +202,27 @@ public class MainActivity extends Activity {
 			miListAdapter = new musicInfoListAdapter(MainActivity.this,
 					listValues);
 		}
+		/*
+		 * 查询SD卡内文件的音乐文件数据，插入到播放列表
+		 * 或者提供一个按钮查询文件中音乐是否存在 
+		 * 如果存在就只存在一个即可
+		 */
 		lv_main_musicList.setAdapter(miListAdapter);
-		// MusicInfoDao musicInfoDao = new MusicInfoDao(MainActivity.this);
-		// musicInfoDao.addMusicInfo("原声带 - 神探夏洛克片头曲加配乐",
-		// "http://nj.baidupcs.com/file/01f6189d40b862895e48a168d2383252?bkt=p2-nj-301&fid=2636535922-250528-880465108811389&time=1417059748&sign=FDTAXERLB-DCb740ccc5511e5e8fedcff06b081203-fxdsDyXhrbZteIeMKdDdFhKYNUE%3D&to=nb&fm=Nan,B,T,t&newver=1&newfm=1&flow_ver=3&sl=81723458&expires=8h&rt=sh&r=974497175&mlogid=2452909214&vuk=2636535922&vbdid=3587078685&fin=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3&fn=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3");
-		// musicInfoDao.updateMusicInfoByID(15, "周杰伦-一口气全念对",
-		// "http://nj.baidupcs.com/file/7ef9bb35e699b8409a3c44dc95186d45?bkt=p2-nj-301&fid=2636535922-250528-755575043660057&time=1419839224&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-gQbtzArluBq0DbBjoWKvlWJvQms%3D&to=nb&fm=Nan,B,T,t&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=pr&r=287245630&mlogid=70031825&vuk=2636535922&vbdid=3587078685&fin=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3&fn=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3");
-		// musicInfoDao.updateMusicInfoByID(16, "莪肚困死锕",
-		// "http://nb.baidupcs.com/file/f298e1d7c3eaf6484e400113fc072ba6?bkt=p2-nb-82&fid=2636535922-250528-639174528573646&time=1419561992&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-hWxI%2BJy%2BZwO%2F8%2BKlWR%2Fk4cNFVy8%3D&to=nbb&fm=Nin,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=687599262&mlogid=1861922290&vuk=2636535922&vbdid=3587078685&fin=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3&fn=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3");
-		// musicInfoDao.updateMusicInfoByID(17, "原声带 - 神探夏洛克片头曲加配乐",
-		// "http://nj.baidupcs.com/file/01f6189d40b862895e48a168d2383252?bkt=p2-nj-301&fid=2636535922-250528-880465108811389&time=1419839020&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-Y24ufKm6aU99Q%2BPqljX73xKqXzs%3D&to=nb&fm=Nan,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=837608369&mlogid=1265784302&vuk=2636535922&vbdid=3587078685&fin=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3&fn=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3");
-		//
-		// musicInfoDao.close();
+//		MusicInfoDao musicInfoDao = new MusicInfoDao(MainActivity.this);
+//		musicInfoDao
+//				.addMusicInfo(
+//						"原声带 - 神探夏洛克片头曲加配乐",
+//						"http://nj.baidupcs.com/file/01f6189d40b862895e48a168d2383252?bkt=p2-nj-301&fid=2636535922-250528-880465108811389&time=1420008141&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-f6N5j7ThaDA9CAYM7dYYdpr7Xbs%3D&to=nb&fm=Nan,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=441965610&mlogid=3227330291&vuk=2636535922&vbdid=3587078685&fin=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3&fn=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3");
+//		musicInfoDao
+//				.addMusicInfo(
+//						"周杰伦-一口气全念对",
+//						"http://nj.baidupcs.com/file/7ef9bb35e699b8409a3c44dc95186d45?bkt=p2-nj-301&fid=2636535922-250528-755575043660057&time=1420008223&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-rNN6oEfi38%2FdLqW6lvv%2BZNcJ77M%3D&to=nb&fm=Nan,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=pr&r=243797683&mlogid=841463741&vuk=2636535922&vbdid=3587078685&fin=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3&fn=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3");
+//		musicInfoDao
+//				.addMusicInfo(
+//						"莪肚困死锕",
+//						"http://lx.cdn.baidupcs.com/file/f298e1d7c3eaf6484e400113fc072ba6?bkt=p2-nb-82&xcode=e56de8f2d65c6622dc3b1b65d3b2060ae177548541a3a5b3d9f439426665a097&fid=2636535922-250528-639174528573646&time=1420008195&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-2yecxWrhJsl6w7HY2znoMTP5q08%3D&to=sc&fm=Nin,B,U,ny&sta_dx=0&sta_cs=3&sta_ft=mp3&sta_ct=5&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=522423162&mlogid=3223752192&vuk=2636535922&vbdid=3587078685&fin=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3&fn=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3");
+//
+//		musicInfoDao.close();
 
 	}
 
@@ -273,23 +282,26 @@ public class MainActivity extends Activity {
 			pause = true;
 			ib_music_play.setBackgroundResource(R.drawable.ic_player_play);
 		}
-		String musicUrl;
-		String musicName;
-		Map musicInfoMap = musicInfoList.get(position);
-		musicName = (String) musicInfoMap.get(MUSICNAME);
-		musicUrl = (String) musicInfoMap.get(MUSICURL);
-		tv_musicName.setText(musicName);
-		tv_musicName.setTag(R.id.tv_musicName, musicUrl);
-		musicName = musicName + ".mp3";
-		String musicPath = Const.MUSICPATH + musicName;
-		File audio = new File(Environment.getExternalStorageDirectory(),
-				musicPath);
-		playPath = audio.getAbsolutePath();
-		if (audio.exists()) {// 如果存在
-			play(0, playPath);// 播放音乐
-			miListAdapter.notifyDataSetChanged();
-		} else {// 不存在
-			new MyAsyncTask().execute(musicUrl, Const.MUSICPATH, musicName);// 异步下载，下载成功后播放
+		if (musicInfoList.size() > 0) {// 如果有数据
+			String musicUrl;
+			String musicName;
+			Map musicInfoMap = musicInfoList.get(position);
+			musicName = (String) musicInfoMap.get(MUSICNAME);
+			musicUrl = (String) musicInfoMap.get(MUSICURL);
+			tv_musicName.setText(musicName);
+			tv_musicName.setTag(R.id.tv_musicName, musicUrl);
+			musicName = musicName + ".mp3";
+			String musicPath = Const.MUSICPATH + musicName;
+			File audio = new File(Environment.getExternalStorageDirectory(),
+					musicPath);
+			playPath = audio.getAbsolutePath();
+			if (audio.exists()) {// 如果存在
+				play(0, playPath);// 播放音乐
+				miListAdapter.notifyDataSetChanged();
+			} else {// 不存在
+				new MyAsyncTask().execute(musicUrl, Const.MUSICPATH, musicName);// 异步下载，下载成功后播放
+			}
+			
 		}
 	}
 
@@ -400,11 +412,16 @@ public class MainActivity extends Activity {
 
 	}
 
+	/*
+	 * 更新时间TextView的显示
+	 */
 	private Handler timeHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			tv_music_time.setText("-"
-					+ setMusicTimeFormat(mediaPlayer.getDuration(),
-							mediaPlayer.getCurrentPosition()));
+			if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+				tv_music_time.setText("-"
+						+ setMusicTimeFormat(mediaPlayer.getDuration(),
+								mediaPlayer.getCurrentPosition()));
+			}
 		};
 	};
 
@@ -503,7 +520,7 @@ public class MainActivity extends Activity {
 		}
 
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			mediaPlayer.seekTo(sbar_music.getProgress());
+			mediaPlayer.seekTo(seekBar.getProgress());
 		}
 
 	}
@@ -513,14 +530,6 @@ public class MainActivity extends Activity {
 		DelayThread dThread = new DelayThread(100);
 		dThread.start();
 	}
-
-	private Handler mHandle = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			sbar_music.setProgress(mediaPlayer.getCurrentPosition());
-		}
-	};
-
 	public class DelayThread extends Thread {
 		int milliseconds;
 
@@ -538,10 +547,20 @@ public class MainActivity extends Activity {
 				}
 
 				mHandle.sendEmptyMessage(0);
-				timeHandler.sendEmptyMessage(0);
+				timeHandler.sendEmptyMessage(0);// 更新剩余时间
 			}
 		}
 	}
+	private Handler mHandle = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+				sbar_music.setProgress(mediaPlayer.getCurrentPosition());
+			}
+		}
+	};
+
+	
 
 	/**
 	 * 传入音乐位置返回音乐格式后的字符串
