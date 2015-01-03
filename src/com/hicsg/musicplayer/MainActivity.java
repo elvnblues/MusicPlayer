@@ -557,14 +557,17 @@ public class MainActivity extends Activity {
 			case R.id.rb_playmode_all://顺序播放
 				mediaPlayer.setLooping(false);
 				playMode = Const.ALL;
+				Toast.makeText(MainActivity.this, R.string.playmode_all, Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.rb_playmode_random://随机播放
 				mediaPlayer.setLooping(false);
 				playMode = Const.RANDOM;
+				Toast.makeText(MainActivity.this, R.string.playmode_random, Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.rb_playmode_single://单曲循环
 				playMode = Const.SINGLE;
 				mediaPlayer.setLooping(true);
+				Toast.makeText(MainActivity.this, R.string.playmode_single, Toast.LENGTH_SHORT).show();
 				break;
 			}
 			ConstClass.setSharedPreferencesVal(MainActivity.this, Const.PLAYMODE_NAME, Const.PLAYMODE_KEY, playMode);
