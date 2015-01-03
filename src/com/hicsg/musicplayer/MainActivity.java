@@ -41,6 +41,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -108,8 +109,7 @@ public class MainActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		setData();
-		playMode = ConstClass.getSharedPreferencesVal(Const.PLAYMODE_NAME,
-				MainActivity.this, Const.PLAYMODE_KEY);
+		
 	}
 
 	@Override
@@ -138,6 +138,11 @@ public class MainActivity extends Activity {
 		title_top_text.setText(R.string.app_name);
 		title_top_right.setVisibility(View.VISIBLE);
 		title_top_right.setBackgroundResource(R.drawable.image_btn_title_menu);
+		
+		rg_playmode = (RadioGroup)findViewById(R.id.rg_playmode);
+		rb_playmode_all = (RadioButton)findViewById(R.id.rb_playmode_all);
+		rb_playmode_random = (RadioButton)findViewById(R.id.rb_playmode_random);
+		rb_playmode_single = (RadioButton)findViewById(R.id.rb_playmode_single);
 
 		mediaPlayer = new MediaPlayer();
 
@@ -158,6 +163,22 @@ public class MainActivity extends Activity {
 		menu_playmode_pop.setBackgroundDrawable(new BitmapDrawable());// 有了这句才可以点击返回（撤销）按钮dismiss()popwindow
 		menu_playmode_pop.setOutsideTouchable(true);
 		// menu_playmode_pop.setAnimationStyle(R.style.PopupAnimation);
+		
+		playMode = ConstClass.getSharedPreferencesVal(Const.PLAYMODE_NAME,
+				MainActivity.this, Const.PLAYMODE_KEY);
+		
+		switch(playMode){
+		case Const.ALL:
+			rb_playmode_all.setChecked(true);
+			break;
+		case Const.RANDOM:
+			rb_playmode_random.setChecked(true);
+			break;
+		case Const.SINGLE:
+			rb_playmode_single.setChecked(true);
+			break;
+		}
+		
 	}
 
 	private void setListener() {
@@ -175,6 +196,7 @@ public class MainActivity extends Activity {
 						menu_playmode_pop.dismiss();
 					}
 				});
+		rg_playmode.setOnCheckedChangeListener(playmode_OnCheckedChangeListener);
 	}
 
 	private void setData() {
@@ -379,16 +401,17 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onCompletion(MediaPlayer mp) {
-			if (playMode == Const.ALL) {// 顺序播放
+			switch(playMode){
+			case Const.ALL:// 顺序播放
 				if (positionNow == musicInfoList.size() - 1) {
 					positionNow = 0;// 第一首歌
 				} else {
 					positionNow++;
 				}
-			} else if (playMode == Const.RANDOM) {// 随机播放
+				break;
+			case Const.RANDOM:// 随机播放
 				positionNow = (int) (Math.random() * musicInfoList.size());
-			} else if (playMode == Const.SINGLE) {
-				// positionNow = positionNow;
+				break;
 			}
 			playMusicByPosition(positionNow);
 		}
@@ -525,6 +548,28 @@ public class MainActivity extends Activity {
 
 	}
 
+	private OnCheckedChangeListener playmode_OnCheckedChangeListener = new OnCheckedChangeListener() {
+		
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			// TODO Auto-generated method stub
+			switch(checkedId){
+			case R.id.rb_playmode_all://顺序播放
+				mediaPlayer.setLooping(false);
+				playMode = Const.ALL;
+				break;
+			case R.id.rb_playmode_random://随机播放
+				mediaPlayer.setLooping(false);
+				playMode = Const.RANDOM;
+				break;
+			case R.id.rb_playmode_single://单曲循环
+				playMode = Const.SINGLE;
+				mediaPlayer.setLooping(true);
+				break;
+			}
+			ConstClass.setSharedPreferencesVal(MainActivity.this, Const.PLAYMODE_NAME, Const.PLAYMODE_KEY, playMode);
+		}
+	};
 	public void startProgressUpdate() {
 		// 开辟Thread 用于定期刷新SeekBar
 		DelayThread dThread = new DelayThread(100);
