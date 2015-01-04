@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +22,10 @@ public class musicInfoListAdapter extends BaseAdapter {
 	private Context context;
 	private List<MusicInfo> musicInfoList;
 	private static final int TAG_MUSIC_URL = 100;
-	private static int position = 0;
+	private static int position = -1;
 	private static int progress = 0;
 	private static boolean isDown = false;
+	private AnimationDrawable mAnimationDrawable;   //AnimationDrawable对象
 	
 	private static boolean TAG_UPDATE_STATUS = false;//运行状态方法
 	private static boolean TAG_UPDATE_PROGRESS = false;// 运行进度方法
@@ -62,12 +64,23 @@ public class musicInfoListAdapter extends BaseAdapter {
 			holder.tv_musicName = (TextView)convertView.findViewById(R.id.tv_musicInfoList_item_musicName);
 			holder.tv_rightProgress = (TextView)convertView.findViewById(R.id.tv_rightProgress);
 			holder.iv_rightResult = (ImageView)convertView.findViewById(R.id.iv_rightResult);
+			holder.iv_head = (ImageView)convertView.findViewById(R.id.iv_musicInfoList_item_head);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder)convertView.getTag();
 		}
 		holder.tv_musicName.setText(musicInfoList.get(position).getMusicName());
 		holder.tv_musicName.setTag(R.id.tv_musicInfoList_item_musicName, musicInfoList.get(position).getMusicUrl());
+		if(musicInfoListAdapter.position==position){
+			ImageView mImageView = new ImageView(context);
+			mImageView.setBackgroundResource(R.anim.musicplaying_animation);
+			mAnimationDrawable = (AnimationDrawable) mImageView.getBackground();
+			mAnimationDrawable.setOneShot(false);
+			holder.iv_head.setBackgroundDrawable(mAnimationDrawable);
+			mAnimationDrawable.start();
+		}else{
+			holder.iv_head.setBackgroundResource(R.drawable.img_musicinfolist_head);
+		}
 		if(TAG_UPDATE_PROGRESS && musicInfoListAdapter.position==position){//进入了音乐下载进度更新逻辑处理
 			if(musicInfoListAdapter.progress <= 99){//还需要下载
 				holder.tv_rightProgress.setVisibility(View.VISIBLE);
@@ -93,6 +106,7 @@ public class musicInfoListAdapter extends BaseAdapter {
 				holder.iv_rightResult
 				.setBackgroundResource(R.drawable.ico_download_wait);
 			}
+			
 		}
 		return convertView;
 	}
@@ -101,6 +115,7 @@ public class musicInfoListAdapter extends BaseAdapter {
 		TextView tv_musicName;
 		TextView tv_rightProgress;
 		ImageView iv_rightResult;
+		ImageView iv_head;
 	}
 	/**
 	 * 更新当前音乐的进度
@@ -111,6 +126,13 @@ public class musicInfoListAdapter extends BaseAdapter {
 		TAG_UPDATE_PROGRESS = true;
 		musicInfoListAdapter.position = position;
 		musicInfoListAdapter.progress = progress;
+	}
+	/**
+	 * 使当前选中的item更换状态
+	 * @param position
+	 */
+	public static void updateStatus(int position){
+		musicInfoListAdapter.position = position;
 	}
 	/**
 	 * 检查文件是否存在

@@ -139,11 +139,6 @@ public class MainActivity extends Activity {
 		title_top_right.setVisibility(View.VISIBLE);
 		title_top_right.setBackgroundResource(R.drawable.image_btn_title_menu);
 		
-		rg_playmode = (RadioGroup)findViewById(R.id.rg_playmode);
-		rb_playmode_all = (RadioButton)findViewById(R.id.rb_playmode_all);
-		rb_playmode_random = (RadioButton)findViewById(R.id.rb_playmode_random);
-		rb_playmode_single = (RadioButton)findViewById(R.id.rb_playmode_single);
-
 		mediaPlayer = new MediaPlayer();
 
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -163,6 +158,11 @@ public class MainActivity extends Activity {
 		menu_playmode_pop.setBackgroundDrawable(new BitmapDrawable());// 有了这句才可以点击返回（撤销）按钮dismiss()popwindow
 		menu_playmode_pop.setOutsideTouchable(true);
 		// menu_playmode_pop.setAnimationStyle(R.style.PopupAnimation);
+		
+		rg_playmode = (RadioGroup)menu_playmode_contentView.findViewById(R.id.rg_playmode);
+		rb_playmode_all = (RadioButton)menu_playmode_contentView.findViewById(R.id.rb_playmode_all);
+		rb_playmode_random = (RadioButton)menu_playmode_contentView.findViewById(R.id.rb_playmode_random);
+		rb_playmode_single = (RadioButton)menu_playmode_contentView.findViewById(R.id.rb_playmode_single);
 		
 		playMode = ConstClass.getSharedPreferencesVal(Const.PLAYMODE_NAME,
 				MainActivity.this, Const.PLAYMODE_KEY);
@@ -231,18 +231,15 @@ public class MainActivity extends Activity {
 		 */
 		lv_main_musicList.setAdapter(miListAdapter);
 //		MusicInfoDao musicInfoDao = new MusicInfoDao(MainActivity.this);
-//		musicInfoDao
-//				.addMusicInfo(
+//		musicInfoDao.addMusicInfo(
 //						"原声带 - 神探夏洛克片头曲加配乐",
-//						"http://nj.baidupcs.com/file/01f6189d40b862895e48a168d2383252?bkt=p2-nj-301&fid=2636535922-250528-880465108811389&time=1420008141&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-f6N5j7ThaDA9CAYM7dYYdpr7Xbs%3D&to=nb&fm=Nan,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=441965610&mlogid=3227330291&vuk=2636535922&vbdid=3587078685&fin=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3&fn=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3");
-//		musicInfoDao
-//				.addMusicInfo(
+//						"http://nj.baidupcs.com/file/01f6189d40b862895e48a168d2383252?bkt=p2-nj-301&fid=2636535922-250528-880465108811389&time=1420340048&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-XBtnK67rRR3Y7SXALk2h5tcD3Lk%3D&to=nb&fm=Nan,B,T,t&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=pr&r=554748934&mlogid=1185413441&vuk=2636535922&vbdid=3587078685&fin=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3&fn=%E5%8E%9F%E5%A3%B0%E5%B8%A6%20-%20%E7%A5%9E%E6%8E%A2%E5%A4%8F%E6%B4%9B%E5%85%8B%E7%89%87%E5%A4%B4%E6%9B%B2%E5%8A%A0%E9%85%8D%E4%B9%90.mp3");
+//		musicInfoDao.addMusicInfo(
 //						"周杰伦-一口气全念对",
-//						"http://nj.baidupcs.com/file/7ef9bb35e699b8409a3c44dc95186d45?bkt=p2-nj-301&fid=2636535922-250528-755575043660057&time=1420008223&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-rNN6oEfi38%2FdLqW6lvv%2BZNcJ77M%3D&to=nb&fm=Nan,B,U,ny&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=pr&r=243797683&mlogid=841463741&vuk=2636535922&vbdid=3587078685&fin=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3&fn=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3");
-//		musicInfoDao
-//				.addMusicInfo(
+//						"http://nj.baidupcs.com/file/7ef9bb35e699b8409a3c44dc95186d45?bkt=p2-nj-301&fid=2636535922-250528-755575043660057&time=1420337769&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-tnMEyb1OrmpbiYbhuab6rtmu%2BCg%3D&to=nb&fm=Nan,B,U,t&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=pr&r=996555465&mlogid=1917812582&vuk=2636535922&vbdid=3587078685&fin=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3&fn=%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%B8%80%E5%8F%A3%E6%B0%94%E5%85%A8%E5%BF%B5%E5%AF%B9.mp3");
+//		musicInfoDao.addMusicInfo(
 //						"莪肚困死锕",
-//						"http://lx.cdn.baidupcs.com/file/f298e1d7c3eaf6484e400113fc072ba6?bkt=p2-nb-82&xcode=e56de8f2d65c6622dc3b1b65d3b2060ae177548541a3a5b3d9f439426665a097&fid=2636535922-250528-639174528573646&time=1420008195&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-2yecxWrhJsl6w7HY2znoMTP5q08%3D&to=sc&fm=Nin,B,U,ny&sta_dx=0&sta_cs=3&sta_ft=mp3&sta_ct=5&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=522423162&mlogid=3223752192&vuk=2636535922&vbdid=3587078685&fin=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3&fn=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3");
+//						"http://lx.cdn.baidupcs.com/file/f298e1d7c3eaf6484e400113fc072ba6?bkt=p2-nb-82&xcode=ae4ecf0f23f0a8856d064771753a8ef6e177548541a3a5b3d9f439426665a097&fid=2636535922-250528-639174528573646&time=1420337792&sign=FDTAXERLBH-DCb740ccc5511e5e8fedcff06b081203-Oc3HvAnqgS8fekPYmigXhZbCOAQ%3D&to=sc&fm=Nin,B,U,t&sta_dx=0&sta_cs=3&sta_ft=mp3&sta_ct=5&newver=1&newfm=1&flow_ver=3&sl=81723466&expires=8h&rt=sh&r=755771303&mlogid=1262418479&vuk=2636535922&vbdid=3587078685&fin=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3&fn=%E8%8E%AA%E8%82%9A%E5%9B%B0%E6%AD%BB%E9%94%95.mp3");
 //
 //		musicInfoDao.close();
 
@@ -288,6 +285,8 @@ public class MainActivity extends Activity {
 					playPosition));
 			ib_music_play.setBackgroundResource(R.drawable.ic_player_pause);
 			sbar_music.setMax(mediaPlayer.getDuration());// 设置进度条
+			miListAdapter.updateStatus(positionNow);
+			miListAdapter.notifyDataSetChanged();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/img_musicinfolist_head" />
+        android:background="@drawable/img_musicinfolist_head" />
 
     <TextView
         android:id="@+id/tv_rightProgress"
